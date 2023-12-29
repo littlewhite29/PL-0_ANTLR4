@@ -1,4 +1,4 @@
-// Generated from D:/Desktop/ANTLR4_test/ANTLR4_test/src/PL0.g4 by ANTLR 4.13.1
+package Task2;// Generated from D:/Desktop/ANTLR4_test/ANTLR4_test/src/PL0.g4 by ANTLR 4.13.1
 import Task2.PL0Listener;
 import Task2.PL0Visitor;
 import org.antlr.v4.runtime.atn.*;
