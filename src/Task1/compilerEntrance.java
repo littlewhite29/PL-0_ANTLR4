@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 /**
  * @author LW
- * @date 2023/12/25 15:20
+ * @date 2023/12/25 15:2    0
  */
 public class compilerEntrance {
 
