@@ -5,6 +5,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
@@ -13,6 +14,7 @@ import static org.antlr.v4.runtime.CharStreams.fromFileName;
  * @date 2023/12/29 14:15
  */
 public class Launch {
+
     public static void main(String[] args) {
         try{
             String source="testInput.txt";
@@ -22,8 +24,13 @@ public class Launch {
             PL0Parser parser=new PL0Parser(token);
             ParseTree tree=parser.program();
 
-            MyVisitor<Object> visitor=new MyVisitor();
+            MyVisitor visitor=new MyVisitor();
             visitor.visit(tree);
+            List<Quaternion> Quaternions= visitor.getQuaternions();
+            for (Quaternion Quaternion :
+                 Quaternions) {
+                System.out.println(Quaternion);
+            }
         }
         catch (IOException e)
         {
