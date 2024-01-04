@@ -11,4 +11,14 @@ public class token {
     private tokenEnum tokenEnum;
 
     private String tokenValue;
+
+    public token(Task1.tokenEnum tokenEnum, String tokenValue) {
+        this.tokenEnum = tokenEnum;
+        this.tokenValue = tokenValue;
+    }
+
+    @Override
+    public String toString(){
+        return "("+this.tokenEnum+","+this.tokenValue+")";
+    }
 }

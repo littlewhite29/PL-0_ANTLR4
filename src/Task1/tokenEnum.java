@@ -8,6 +8,7 @@ public enum tokenEnum {
 
     // 关键字
     PROGRAM,
+    BEGIN,
     END,
     CONST,
     VAR,
