@@ -97,17 +97,17 @@ public class lexicalAnalysis {
                 return true;
             }
         }
+        else if(currentState==State.q_LPAREN||currentState==State.q_RPAREN)
+        {
+            //左与右括号直接结束
+            return true;
+        }
         else if(isDelimiterOrOperator)
         {
             //当前状态为标识符或分隔符时遇到数字和字母和括号结束
             if (Character.isLetter(ch)||Character.isDigit(ch)||ch=='('||ch==')') {
                 return true;
             }
-        }
-        else if(currentState==State.q_LPAREN||currentState==State.q_RPAREN)
-        {
-            //左与右括号直接结束
-            return true;
         }
 
         return false;
