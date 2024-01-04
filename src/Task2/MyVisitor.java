@@ -42,7 +42,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitProgram(PL0Parser.ProgramContext ctx) {
-        System.out.println("visitProgram");
+//        System.out.println("visitProgram");
 //        System.out.println(ctx.programHeader().getText());
 //        System.out.println(ctx.subroutine().getText());
 //        System.out.println(ctx.children.get(1).getText());
@@ -56,7 +56,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitProgramHeader(PL0Parser.ProgramHeaderContext ctx) {
-        System.out.println("\nvisitProgramHeader");
+//        System.out.println("\nvisitProgramHeader");
 //        System.out.println(ctx.PROGRAM().getText());
 //        System.out.println(ctx.IDENTIFIER().getText());
         return null;
@@ -64,7 +64,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitSubroutine(PL0Parser.SubroutineContext ctx) {
-        System.out.println("\nvisitSubroutine");
+//        System.out.println("\nvisitSubroutine");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         if (ctx.constantDeclaration()!=null)
@@ -81,7 +81,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitConstantDeclaration(PL0Parser.ConstantDeclarationContext ctx) {
-        System.out.println("\nvisitConstantDeclaration");
+//        System.out.println("\nvisitConstantDeclaration");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         for (int i = 0; i < ctx.constantDefinition().size(); i++) {
@@ -92,30 +92,30 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitConstantDefinition(PL0Parser.ConstantDefinitionContext ctx) {
-        System.out.println("\nvisitConstantDefinition");
+//        System.out.println("\nvisitConstantDefinition");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         Declaration.add(new Declaration(ctx.IDENTIFIER().toString(), "Constant", Integer.parseInt(ctx.INTEGER().getText()), ctx.depth(), Declaration.size()+1));
-        System.out.println(Declaration);
+//        System.out.println(Declaration);
         quaternions.add(new Quaternion(quaternions.size() + 1, ":=", ctx.INTEGER().getText(), "_", ctx.IDENTIFIER().toString()));
         return null;
     }
 
     @Override
     public String visitVariableDeclaration(PL0Parser.VariableDeclarationContext ctx) {
-        System.out.println("\nvisitVariableDeclaration");
+//        System.out.println("\nvisitVariableDeclaration");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         for (int i = 0; i < ctx.IDENTIFIER().size(); i++) {
             Declaration.add(new Declaration(ctx.IDENTIFIER().get(i).toString(), "Variable", 0, ctx.depth(), Declaration.size()+1));
         }
-        System.out.println(Declaration);
+//        System.out.println(Declaration);
         return null;
     }
 
     @Override
     public String visitCompoundStatement(PL0Parser.CompoundStatementContext ctx) {
-        System.out.println("\nvisitCompoundStatement");
+//        System.out.println("\nvisitCompoundStatement");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         visit(ctx.statementList());
@@ -124,7 +124,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitStatementList(PL0Parser.StatementListContext ctx) {
-        System.out.println("\nvisitStatementList");
+//        System.out.println("\nvisitStatementList");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         for (int i = 0; i < ctx.statement().size(); i++) {
@@ -135,7 +135,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitStatement(PL0Parser.StatementContext ctx) {
-        System.out.println("\nvisitStatement");
+//        System.out.println("\nvisitStatement");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         return visitChildren(ctx);
@@ -143,7 +143,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitAssignmentStatement(PL0Parser.AssignmentStatementContext ctx) {
-        System.out.println("\nAssignmentStatement");
+//        System.out.println("\nAssignmentStatement");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
 
@@ -161,22 +161,23 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 //            System.out.println(visitChildren(ctx));
             String arg1=visitExpression(ctx.expression());
             tempQuaternion.setArg1(arg1);
+            tempQuaternion.setArg2("_");
             tempQuaternion.setId(quaternions.size()+1);
             quaternions.add(tempQuaternion);
             tempQuaternion =null;
         } else {
             System.out.println("变量" + ctx.IDENTIFIER().getText() + "未声明");
         }
-        System.out.println(quaternions);
+//        System.out.println(quaternions);
         return ctx.IDENTIFIER().getText();
     }
 
     @Override
     public String visitExpression(PL0Parser.ExpressionContext ctx) {
-        System.out.println("\nvisitExpression");
+//        System.out.println("\nvisitExpression");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
-        System.out.println(ctx.getText());
+//        System.out.println(ctx.getText());
         String left=visit(ctx.term(0));
         if(ctx.term().size()==1)
         {
@@ -222,7 +223,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitTerm(PL0Parser.TermContext ctx) {
-        System.out.println("\nvisitTerm");
+//        System.out.println("\nvisitTerm");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         String result="";
@@ -249,7 +250,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitFactor(PL0Parser.FactorContext ctx) {
-        System.out.println("\nvisitFactor");
+//        System.out.println("\nvisitFactor");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         if (ctx.IDENTIFIER()!=null)
@@ -268,7 +269,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitAdditionOperator(PL0Parser.AdditionOperatorContext ctx) {
-        System.out.println("\nvisitAdditionOperator");
+//        System.out.println("\nvisitAdditionOperator");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         return visitChildren(ctx);
@@ -276,7 +277,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitMultiplicationOperator(PL0Parser.MultiplicationOperatorContext ctx) {
-        System.out.println("\nvisitMultiplicationOperator");
+//        System.out.println("\nvisitMultiplicationOperator");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         return visitChildren(ctx);
@@ -284,7 +285,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitConditionStatement(PL0Parser.ConditionStatementContext ctx) {
-        System.out.println("\nvisitConditionStatement");
+//        System.out.println("\nvisitConditionStatement");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         visit(ctx.condition());
@@ -299,7 +300,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitLoopStatement(PL0Parser.LoopStatementContext ctx) {
-        System.out.println("\nvisitLoopStatement");
+//        System.out.println("\nvisitLoopStatement");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         int start= quaternions.size()+1;
@@ -314,7 +315,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitCondition(PL0Parser.ConditionContext ctx) {
-        System.out.println("\nvisitCondition");
+//        System.out.println("\nvisitCondition");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         String left=ctx.expression().get(0).getText();
@@ -327,7 +328,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitRelationOperator(PL0Parser.RelationOperatorContext ctx) {
-        System.out.println("\nvisitRelationOperator");
+//        System.out.println("\nvisitRelationOperator");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         if (ctx.EQUAL()!=null)
@@ -356,7 +357,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
     @Override
     public String visitEmptyStatement(PL0Parser.EmptyStatementContext ctx) {
-        System.out.println("\nvisitEmptyStatement");
+//        System.out.println("\nvisitEmptyStatement");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         return null;
