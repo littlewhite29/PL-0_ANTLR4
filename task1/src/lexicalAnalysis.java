@@ -1,10 +1,7 @@
-package Task1;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sun.tools.javac.parser.Tokens.Token;
 
 /**
  * @author LW
@@ -54,16 +51,11 @@ public class lexicalAnalysis {
             }
         }
         //查看token生成结果
-        for (Token token:
+        for (token token:
              tokens) {
             System.out.println(token);
-            output.append(token.toString());
+            //output.append(token.toString());
         }
-        //输出到文件
-        Path path = Paths.get("token.txt");
-        //使用Files.writer创建一个文件并写入
-        Files.write(path, output.getBytes(StandardCharsets.UTF_8));
-
     }
 
     public token getNextToken()
