@@ -75,7 +75,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
         {
             visit(ctx.variableDeclaration());
         }
-        visit(ctx.compoundStatement());
+        visit(ctx.statement());
         return null;
     }
 

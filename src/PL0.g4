@@ -32,13 +32,13 @@ WS: [ \t\n\r]+ -> skip; // 跳过空格、制表符和换行符
 // 语法规则
 program: programHeader subroutine EOF; // 添加EOF来表示输入结束
 programHeader: PROGRAM IDENTIFIER;
-subroutine: (constantDeclaration)? (variableDeclaration)? compoundStatement EOF; // 添加EOF来表示输入结束
+subroutine: (constantDeclaration)? (variableDeclaration)? statement EOF; // 添加EOF来表示输入结束
 constantDeclaration: CONST constantDefinition (COMMA constantDefinition)* SEMICOLON;
 constantDefinition: IDENTIFIER ASSIGN INTEGER;
 variableDeclaration: VAR IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON;
 compoundStatement: BEGIN statementList END;
 statementList: statement (SEMICOLON statement)* ;
-statement: assignmentStatement | conditionStatement | loopStatement | emptyStatement;
+statement: assignmentStatement | conditionStatement | loopStatement | compoundStatement| emptyStatement;
 assignmentStatement: IDENTIFIER ASSIGN expression ;
 expression: term (additionOperator term)*;
 term: factor (multiplicationOperator factor)*;
