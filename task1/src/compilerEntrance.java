@@ -12,7 +12,7 @@ public class compilerEntrance {
 
 
     public static void main(String[] args) {
-        String path="src/testInput.txt";
+        String path="src/test2.txt";
         /*
         System.out.println("请输入文件路径");
         Scanner sc=new Scanner(System.in);
