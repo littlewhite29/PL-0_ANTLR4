@@ -1,6 +1,12 @@
 package Task1;
 
+import Task2.Quaternion;
+
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -30,8 +36,40 @@ public class compilerEntrance {
         String fileContent = readFile(path);
         System.out.println(fileContent);
         System.out.println("开始编译");
+        System.out.println("开始生成token");
         lexicalAnalysis lexicalAnalysis=new lexicalAnalysis();
         lexicalAnalysis.process(fileContent);
+        System.out.println("开始语法分析");
+        grammarAnalysis grammarAnalysis=new grammarAnalysis(lexicalAnalysis);
+        grammarAnalysis.visitProgram();
+        List<Quaternion> Quaternions=grammarAnalysis.getQuaternions();
+        System.out.println("编译完成");
+        for (Quaternion Quaternion :
+                Quaternions) {
+            System.out.println(Quaternion);
+        }
+        String fileName="testOutput_task1.txt";
+        System.out.println("开始将数据写入文件"+fileName);
+        String content="";
+        for (Quaternion quaternion : Quaternions){
+            content +=quaternion.getId()+".("+quaternion.getOp()+","+quaternion.getArg1()+","+quaternion.getArg2()+","+quaternion.getResult()+")\n";
+        }
+        try
+        {
+            Path path1 = Paths.get(fileName);
+            if (!Files.exists(path1)) {
+                Files.createFile(path1);
+            }
+            FileWriter fileWriter = new FileWriter(fileName, false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(content);
+            bufferedWriter.close();
+            System.out.println("写入完成");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
     public static String readFile(String filePath) {
         StringBuilder fileContent = new StringBuilder();
