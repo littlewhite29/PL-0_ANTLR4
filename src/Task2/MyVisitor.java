@@ -19,7 +19,6 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 
 
     private List<Declaration> Declaration = new ArrayList<>();
-    private int dec_adr = 0;
 
 
     private Boolean find_declaration(java.lang.String name) {
@@ -95,7 +94,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 //        System.out.println("\nvisitConstantDefinition");
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
-        Declaration.add(new Declaration(ctx.IDENTIFIER().toString(), "Constant", Integer.parseInt(ctx.INTEGER().getText()), ctx.depth(), Declaration.size()+1));
+        Declaration.add(new Declaration(ctx.IDENTIFIER().toString(), "Constant", Integer.parseInt(ctx.INTEGER().getText())));
 //        System.out.println(Declaration);
         quaternions.add(new Quaternion(quaternions.size() + 1, ":=", ctx.INTEGER().getText(), "_", ctx.IDENTIFIER().toString()));
         return null;
@@ -107,7 +106,7 @@ public class MyVisitor extends PL0BaseVisitor<String> {
 //        System.out.println(ctx.start.getText());
 //        System.out.println(ctx.start.toString());
         for (int i = 0; i < ctx.IDENTIFIER().size(); i++) {
-            Declaration.add(new Declaration(ctx.IDENTIFIER().get(i).toString(), "Variable", 0, ctx.depth(), Declaration.size()+1));
+            Declaration.add(new Declaration(ctx.IDENTIFIER().get(i).toString(), "Variable", 0));
         }
 //        System.out.println(Declaration);
         return null;
