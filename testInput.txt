@@ -1,9 +1,11 @@
-PROGRAM add
-VAR x,y;
+PROGRAM factorial
+VAR num, fact;
 BEGIN
-x:=1+(3-3)*0;
-y:=2;
-WHILE x<5 DO x:=x+1;
-IF y>0 THEN y:=y-1;
-y:=y+x
+   num := 5;
+   fact := 1;
+   WHILE num > 0 DO
+   BEGIN
+      fact := fact * num;
+      num := num - 1
+   END
 END

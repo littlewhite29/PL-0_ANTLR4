@@ -243,8 +243,10 @@ public class grammarAnalysis {
             case IDENTIFIER:
                 visitAssignmentStatement();
                 break;
-            case COMMA:
+            case SEMICOLON:
                 visitEmptyStatement();
+                break;
+            case END:
                 break;
             default:
                 System.out.println("非法的token类型:"+lexer.watchNextToken().getTokenEnum());

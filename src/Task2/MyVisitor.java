@@ -342,6 +342,10 @@ public class MyVisitor extends PL0BaseVisitor<String> {
         {
             return ctx.LESS_THAN().getText();
         }
+        else if(ctx.LESS_THAN_OR_EQUAL()!=null)
+        {
+            return  ctx.LESS_THAN_OR_EQUAL().getText();
+        }
         else if (ctx.GREATER_THAN()!=null) {
             return ctx.GREATER_THAN().getText();
         }
